@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Недвижимость Кыргызстана</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700&family=Golos+Text:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --bg: #f0ede8;
+        --card: #ffffff;
+        --text: #16130f;
+        --muted: #6b6460;
+        --accent: #d4622a;
+        --accent2: #2a6dd4;
+        --border: #dedad4;
+        --tag-bg: #e8e4de;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Golos Text", sans-serif;
+        font-size: 15px;
+        line-height: 1.65;
+      }
+
+      header {
+        background: var(--text);
+        padding: 3rem 2rem 2.5rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      header::before {
+        content: "";
+        position: absolute;
+        top: -60px;
+        right: -60px;
+        width: 220px;
+        height: 220px;
+        border-radius: 50%;
+        border: 40px solid rgba(212, 98, 42, 0.18);
+      }
+
+      header::after {
+        content: "";
+        position: absolute;
+        bottom: -40px;
+        left: -40px;
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        border: 30px solid rgba(42, 109, 212, 0.15);
+      }
+
+      .flag {
+        font-size: 2.5rem;
+        margin-bottom: 0.75rem;
+        display: block;
+      }
+
+      header h1 {
+        font-family: "Unbounded", sans-serif;
+        font-size: clamp(1.4rem, 4vw, 2.6rem);
+        font-weight: 700;
+        color: #f0ede8;
+        letter-spacing: -0.02em;
+        margin-bottom: 0.5rem;
+        position: relative;
+      }
+
+      header p {
+        font-size: 0.92rem;
+        color: #a09890;
+        font-weight: 300;
+        position: relative;
+      }
+
+      .stripe {
+        height: 4px;
+        background: linear-gradient(
+          90deg,
+          var(--accent) 33%,
+          #f7f0e8 33% 66%,
+          var(--accent2) 66%
+        );
+      }
+
+      nav {
+        background: #1e1a16;
+        display: flex;
+        justify-content: center;
+        gap: 0;
+        flex-wrap: wrap;
+      }
+
+      nav a {
+        color: #a09890;
+        text-decoration: none;
+        padding: 0.7rem 1.2rem;
+        font-size: 0.8rem;
+        font-weight: 500;
+        font-family: "Unbounded", sans-serif;
+        letter-spacing: 0.02em;
+        transition: color 0.2s;
+        white-space: nowrap;
+      }
+
+      nav a:hover {
+        color: var(--accent);
+      }
+
+      .hero {
+        max-width: 680px;
+        margin: 2.5rem auto 0;
+        padding: 0 1.5rem;
+        text-align: center;
+      }
+
+      .hero h2 {
+        font-family: "Unbounded", sans-serif;
+        font-size: 1.1rem;
+        font-weight: 400;
+        margin-bottom: 0.6rem;
+        color: var(--text);
+      }
+
+      .hero p {
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .stats {
+        max-width: 900px;
+        margin: 2rem auto;
+        padding: 0 1.5rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 10px;
+      }
+
+      .stat {
+        background: var(--text);
+        border-radius: 12px;
+        padding: 1.25rem 1rem;
+        text-align: center;
+      }
+
+      .stat-num {
+        font-family: "Unbounded", sans-serif;
+        font-size: 1.6rem;
+        color: var(--accent);
+        display: block;
+        line-height: 1.1;
+      }
+
+      .stat-label {
+        font-size: 0.72rem;
+        color: #a09890;
+        margin-top: 0.3rem;
+        display: block;
+      }
+
+      .section {
+        max-width: 960px;
+        margin: 0 auto 3.5rem;
+        padding: 0 1.5rem;
+      }
+
+      .section-head {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 0.3rem;
+      }
+
+      .section-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        flex-shrink: 0;
+      }
+
+      .ic-portal {
+        background: #daeaf8;
+        color: #1a5a8a;
+      }
+      .ic-agency {
+        background: #fce8dc;
+        color: #8a3010;
+      }
+      .ic-elite {
+        background: #ede8f8;
+        color: #4a2080;
+      }
+      .ic-new {
+        background: #dcf4e4;
+        color: #1a6a38;
+      }
+
+      .section-title {
+        font-family: "Unbounded", sans-serif;
+        font-size: 1rem;
+        font-weight: 400;
+      }
+
+      .section-sub {
+        color: var(--muted);
+        font-size: 0.82rem;
+        margin-bottom: 1.25rem;
+        padding-left: 44px;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 12px;
+      }
+
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 1.25rem;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+
+      .card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 28px rgba(0, 0, 0, 0.07);
+      }
+
+      .card-top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        margin-bottom: 0.75rem;
+      }
+
+      .logo {
+        width: 48px;
+        height: 48px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Unbounded", sans-serif;
+        font-size: 0.75rem;
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+
+      .badge {
+        font-size: 0.65rem;
+        font-weight: 500;
+        padding: 3px 9px;
+        border-radius: 20px;
+        font-family: "Unbounded", sans-serif;
+        letter-spacing: 0.02em;
+      }
+
+      .b-portal {
+        background: #daeaf8;
+        color: #1a5a8a;
+      }
+      .b-agency {
+        background: #fce8dc;
+        color: #8a3010;
+      }
+      .b-elite {
+        background: #ede8f8;
+        color: #4a2080;
+      }
+      .b-new {
+        background: #dcf4e4;
+        color: #1a6a38;
+      }
+      .b-foreign {
+        background: #f8f0da;
+        color: #6a4010;
+      }
+
+      .card-site {
+        font-size: 0.72rem;
+        color: var(--accent);
+        margin-bottom: 0.35rem;
+        font-weight: 500;
+      }
+
+      .card h3 {
+        font-family: "Unbounded", sans-serif;
+        font-size: 0.9rem;
+        font-weight: 400;
+        margin-bottom: 0.5rem;
+        line-height: 1.3;
+      }
+
+      .card p {
+        font-size: 0.84rem;
+        color: var(--muted);
+        line-height: 1.55;
+        margin-bottom: 1rem;
+      }
+
+      .tags {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+        border-top: 1px solid var(--border);
+        padding-top: 0.75rem;
+      }
+
+      .tag {
+        font-size: 0.68rem;
+        color: var(--muted);
+        background: var(--tag-bg);
+        border-radius: 20px;
+        padding: 2px 9px;
+      }
+
+      .a1 {
+        background: #fce8dc;
+        color: #8a3010;
+      }
+      .a2 {
+        background: #daeaf8;
+        color: #1a5a8a;
+      }
+      .a3 {
+        background: #dcf4e4;
+        color: #1a6a38;
+      }
+      .a4 {
+        background: #ede8f8;
+        color: #4a2080;
+      }
+      .a5 {
+        background: #f8f0da;
+        color: #6a4010;
+      }
+      .a6 {
+        background: #f4dadc;
+        color: #8a1a28;
+      }
+      .a7 {
+        background: #daf8f4;
+        color: #1a6a5a;
+      }
+      .a8 {
+        background: #f0f8da;
+        color: #4a6a1a;
+      }
+
+      footer {
+        background: var(--text);
+        color: #6b6460;
+        text-align: center;
+        padding: 2rem 1.5rem;
+        font-size: 0.78rem;
+        margin-top: 2rem;
+      }
+
+      footer span {
+        color: var(--accent);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <span class="flag">🇰🇬</span>
+      <h1>Недвижимость Кыргызстана</h1>
+      <p>Агентства, порталы и платформы рынка недвижимости КР</p>
+    </header>
+    <div class="stripe"></div>
+
+    <nav>
+      <a href="#portals">Порталы</a>
+      <a href="#agencies">Агентства</a>
+      <a href="#elite">Элитная</a>
+      <a href="#new">Новостройки</a>
+      <a href="#foreign">Иностранные</a>
+    </nav>
+
+    <div class="hero">
+      <h2>Рынок недвижимости Бишкека и КР</h2>
+      <p>
+        Собрали все основные площадки и агентства — от крупных онлайн-порталов
+        до специализированных компаний по первичке и элитному жилью.
+      </p>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <span class="stat-num">house.kg</span>
+        <span class="stat-label">главный портал</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">66K+</span>
+        <span class="stat-label">объявлений на lalafo</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">89+</span>
+        <span class="stat-label">агентств в Бишкеке</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">$900</span>
+        <span class="stat-label">средняя цена/м² элитка</span>
+      </div>
+    </div>
+
+    <!-- ПОРТАЛЫ -->
+    <section class="section" id="portals">
+      <div class="section-head">
+        <div class="section-icon ic-portal">🌐</div>
+        <div class="section-title">Онлайн-порталы</div>
+      </div>
+      <div class="section-sub">
+        Основные площадки для поиска и публикации объявлений
+      </div>
+      <div class="grid">
+        <div class="card">
+          <div class="card-top">
+            <div class="logo a2">HK</div>
+            <span class="badge b-portal">Портал</span>
+          </div>
+          <div class="card-site">house.kg</div>
+          <h3>House.kg</h3>
+          <p>
+            Специализированный портал недвижимости Кыргызстана. Тысячи
+            объявлений от агентств и собственников, каталог агентств с рейтингом
+            активности.
+          </p>
+          <div class="tags">
+            <span class="tag">Продажа</span><span class="tag">Аренда</span
+            ><span class="tag">Агентства</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-top">
+            <div class="logo a5">LA</div>
+            <span class="badge b-portal">Classifieds</span>
+          </div>
+          <div class="card-site">lalafo.kg</div>
+          <h3>Lalafo.kg</h3>
+          <p>
+            Крупнейшая доска объявлений Кыргызстана. Раздел недвижимости — более
+            66 000 активных объявлений по всей стране. Бесплатное размещение.
+          </p>
+          <div class="tags">
+            <span class="tag">Частники</span><span class="tag">Агентства</span
+            ><span class="tag">Все регионы</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-top">
+            <div class="logo a3">M2</div>
+            <span class="badge b-portal">Портал</span>
+          </div>
+          <div class="card-site">m2.kg</div>
+          <h3>M2.kg</h3>
+          <p>
+            Портал недвижимости с каталогом агентств Бишкека. Удобный поиск по
+            районам, типам жилья и ценовым категориям. Справочник по компаниям.
+          </p>
+          <div class="tags">
+            <span class="tag">Справочник</span><span class="tag">Бишкек</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-top">
+            <div class="logo a7">DK</div>
+            <span class="badge b-portal">Портал</span>
+          </div>
+          <div class="card-site">dom.kg (ДОМ.KG)</div>
+          <h3>ДОМ.KG</h3>
+          <p>
+            Местная платформа для размещения объявлений по недвижимости.
+            Присутствует в каталоге house.kg как активный участник рынка.
+          </p>
+          <div class="tags">
+            <span class="tag">Жилая</span><span class="tag">Продажа</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- АГЕНТСТВА -->
+    <section class="section" id="agencies">
+      <div class="section-head">
+        <div class="section-icon ic-agency">🏠</div>
+        <div class="section-title">Крупные агентства Бишкека</div>
+      </div>
+      <div class="section-sub">
+        Известные риэлторские компании с большой базой объектов
+      </div>
+      <div class="grid">
+        <div class="card">
+          <div class="card-top">
+            <div class="logo a1">КН</div>
+            <span class="badge b-agency">Агентство</span>
+          </div>
+          <div class="card-site">ned.kg</div>
+          <h3>Кыргыз Недвижимость</h3>
+          <p>
+            Одно из самых активных агентств в КР — тысячи объявлений на house.kg
+            и lalafo. Специализируется на продаже и аренде в Бишкеке,
+            юридическое сопровождение.
+          </p>
+          <div class="tags">
+            <span class="tag">Купля-продажа</span><span class="tag">Аренда</span
+            ><span class="tag">Юр. сопровождение</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-top">
+            <div class="logo a4">ВХ</div>
+            <span class="badge b-agency">Агентство</span>
+          </div>
+          <div class="card-site">vistakgz.com</div>
+          <h3>Виста Холдинг</h3>
+          <p>
+            Риэлторская компания с акцентом на рекомендательный сервис. Работает
+            в сегментах жилой и коммерческой недвижимости Бишкека.
+          </p>
+          <div class="tags">
+            <span class="tag">Жилая</span><span class="tag">Коммерческая</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-top">
+            <div class="logo a8">НК</div>
+            <span class="badge b-agency">Агентство</span>
+          </div>
+          <div class="card-site">nk.kg</div>
+          <h3>Новый Ключ</h3>
+          <p>
+            Агентство с собственным реестром объектов. Помощь в покупке квартир,
+            домов, офисов, участков. Срочный выкуп недвижимости.
+          </p>
+          <div class="tags">
+            <span class="tag">Срочный выкуп</span
+            ><span class="tag">Вторичный рынок</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-top">
+            <div class="logo a6">BR</div>
+            <span class="badge b-agency">Агентство</span>
+          </div>
+          <div class="card-site">bishkek-rielt.kg</div>
+          <h3>Bishkek-Rielt</h3>
+          <p>
+            Работает с 2012 года. Специализация — сделки в Бишкеке и Чуйской
+            области. Жильё, земля, коммерческие объекты, юридическая проверка.
+          </p>
+          <div class="tags">
+            <span class="tag">Бишкек</span><span class="tag">Чуйская обл.</span
+            ><span class="tag">С 2012 г.</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-top">
+            <div class="logo a2">ПЛ</div>
+            <span class="badge b-agency">Агентство</span>
+          </div>
+          <div class="card-site">an.kg</div>
+          <h3>Агентство «Площадь»</h3>
+          <p>
+            Риэлторская компания с собственным сайтом и базой объявлений.
+            Охватывает жилую и коммерческую недвижимость столицы.
+          </p>
+          <div class="tags">
+            <span class="tag">Жилая</span><span class="tag">Коммерческая</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-top">
+            <div class="logo a5">МГ</div>
+            <span class="badge b-agency">Агентство</span>
+          </div>
+          <div class="card-site">—</div>
+          <h3>АН «Магнат»</h3>
+          <p>
+            Активный участник рынка — более 170 объявлений на house.kg. Работает
+            в сегменте жилой недвижимости Бишкека.
+          </p>
+          <div class="tags">
+            <span class="tag">Бишкек</span><span class="tag">Жилая</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-top">
+            <div class="logo a7">ЕВ</div>
+            <span class="badge b-agency">Агентство</span>
+          </div>
+          <div class="card-site">—</div>
+          <h3>Евразия</h3>
+          <p>
+            Одно из агентств с широкой базой — свыше 240 объявлений на house.kg.
+            Занимается продажей и арендой жилой недвижимости.
+          </p>
+          <div class="tags">
+            <span class="tag">Продажа</span><span class="tag">Аренда</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-top">
+            <div class="logo a3">КД</div>
+            <span class="badge b-agency">Агентство</span>
+          </div>
+          <div class="card-site">—</div>
+          <h3>Корпорация Добро!</h3>
+          <p>
+            Работает с 2011 года. Заработало репутацию на рынке Бишкека за счёт
+            честного подхода. Продажа и аренда квартир, домов.
+          </p>
+          <div class="tags">
+            <span class="tag">С 2011 г.</span><span class="tag">Репутация</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ЭЛИТНАЯ -->
+    <section class="section" id="elite">
+      <div class="section-head">
+        <div class="section-icon ic-elite">💎</div>
+        <div class="section-title">Элитная и коммерческая</div>
+      </div>
+      <div class="section-sub">Компании, работающие в премиальном сегменте</div>
+      <div class="grid">
+        <div class="card">
+          <div class="card-top">
+            <div class="logo a4">СЛ</div>
+            <span class="badge b-elite">Элитная</span>
+          </div>
+          <div class="card-site">salut.kg</div>
+          <h3>Салют</h3>
+          <p>
+            Специализируется на VIP-аренде и элитном жилье Бишкека. Особняки,
+            апартаменты, офисы и магазины премиального сегмента.
+          </p>
+          <div class="tags">
+            <span class="tag">VIP-аренда</span><span class="tag">Элитка</span
+            ><span class="tag">Офисы</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-top">
+            <div class="logo a1">ГА</div>
+            <span class="badge b-elite">Аукцион</span>
+          </div>
+          <div class="card-site">—</div>
+          <h3>Гарант</h3>
+          <p>
+            Работает 14+ лет. Предлагает элитную аренду и уникальный для КР
+            формат — аукционную продажу недвижимости по максимальной цене.
+          </p>
+          <div class="tags">
+            <span class="tag">14 лет</span><span class="tag">Аукцион</span
+            ><span class="tag">Элита</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-top">
+            <div class="logo a2">A2</div>
+            <span class="badge b-elite">Коммерческая</span>
+          </div>
+          <div class="card-site">—</div>
+          <h3>А2 Групп</h3>
+          <p>
+            Ведущая столичная риэлторская компания в секторе коммерческой и
+            жилой недвижимости. Широкая экспертиза по объектам Бишкека.
+          </p>
+          <div class="tags">
+            <span class="tag">Коммерческая</span><span class="tag">Жилая</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-top">
+            <div class="logo a7">PMG</div>
+            <span class="badge b-elite">Управление</span>
+          </div>
+          <div class="card-site">—</div>
+          <h3>Property Management Group</h3>
+          <p>
+            Лидер в сфере управления недвижимостью в КР. Реализация, управление
+            и сдача объектов в аренду на профессиональной основе.
+          </p>
+          <div class="tags">
+            <span class="tag">Управление</span
+            ><span class="tag">Инвестиции</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- НОВОСТРОЙКИ -->
+    <section class="section" id="new">
+      <div class="section-head">
+        <div class="section-icon ic-new">🏗️</div>
+        <div class="section-title">Новостройки и застройщики</div>
+      </div>
+      <div class="section-sub">
+        Агентства и компании на рынке первичного жилья
+      </div>
+      <div class="grid">
+        <div class="card">
+          <div class="card-top">
+            <div class="logo a3">МИ</div>
+            <span class="badge b-new">Новостройки</span>
+          </div>
+          <div class="card-site">—</div>
+          <h3>Мээрим Инвест</h3>
+          <p>
+            Активный игрок рынка первичного жилья. Более 300 активных объявлений
+            на house.kg, специализация — элитные новостройки Бишкека.
+          </p>
+          <div class="tags">
+            <span class="tag">Первичный рынок</span
+            ><span class="tag">Элитка</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-top">
+            <div class="logo a5">ТЛ</div>
+            <span class="badge b-new">Уровень</span>
+          </div>
+          <div class="card-site">—</div>
+          <h3>The Level Group</h3>
+          <p>
+            Современная компания нового типа — более 360 объявлений. Фокус на
+            инновации и ответственный подход к сделкам с недвижимостью.
+          </p>
+          <div class="tags">
+            <span class="tag">Инновации</span
+            ><span class="tag">Первичный рынок</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-top">
+            <div class="logo a6">AG</div>
+            <span class="badge b-new">Группа</span>
+          </div>
+          <div class="card-site">—</div>
+          <h3>Aziret Group</h3>
+          <p>
+            Компания с активной базой объявлений. Специализируется на жилой
+            недвижимости и работает в нескольких районах Бишкека.
+          </p>
+          <div class="tags">
+            <span class="tag">Жилая</span><span class="tag">Бишкек</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-top">
+            <div class="logo a8">МH</div>
+            <span class="badge b-new">Аренда</span>
+          </div>
+          <div class="card-site">—</div>
+          <h3>Mega House</h3>
+          <p>
+            Зарегистрировано как ОсОО. Активно в сегменте долгосрочной аренды,
+            большой выбор однокомнатных квартир в жилых комплексах города.
+          </p>
+          <div class="tags">
+            <span class="tag">Долгосрочная аренда</span
+            ><span class="tag">ЖК</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ИНОСТРАННЫЕ -->
+    <section class="section" id="foreign">
+      <div class="section-head">
+        <div class="section-icon ic-portal">🌍</div>
+        <div class="section-title">Иностранные компании в КР</div>
+      </div>
+      <div class="section-sub">
+        Международные сети, открывшие офисы в Бишкеке
+      </div>
+      <div class="grid">
+        <div class="card">
+          <div class="card-top">
+            <div class="logo a5">ЭТ</div>
+            <span class="badge b-foreign">Франшиза</span>
+          </div>
+          <div class="card-site">bishkek.etagi.com</div>
+          <h3>Этажи — Бишкек</h3>
+          <p>
+            Российская федеральная сеть, открывшая офис в Бишкеке. Полный спектр
+            услуг: продажа, аренда, ипотека, новостройки. Сильная
+            технологическая платформа.
+          </p>
+          <div class="tags">
+            <span class="tag">Франшиза РФ</span><span class="tag">Digital</span
+            ><span class="tag">Ипотека</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-top">
+            <div class="logo a2">MA</div>
+            <span class="badge b-foreign">Группа</span>
+          </div>
+          <div class="card-site">—</div>
+          <h3>M&A Group</h3>
+          <p>
+            Развивающаяся компания с акцентом на услуги высокого уровня. Активно
+            работает на рынке продажи и аренды жилья в Бишкеке.
+          </p>
+          <div class="tags">
+            <span class="tag">Сервис</span><span class="tag">Жилая</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>
+        Недвижимость <span>Кыргызстана</span> — информационный справочник · 2024
+      </p>
+      <p style="margin-top: 0.4rem; opacity: 0.5">
+        Данные носят ознакомительный характер. Проверяйте актуальность на сайтах
+        компаний.
+      </p>
+    </footer>
+  </body>
+</html>
